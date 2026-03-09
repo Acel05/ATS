@@ -85,7 +85,19 @@ if st.button("Jalankan Analisis Massal 🚀") and uploaded_files:
                         phone = candidate.get("phone") or "N/A"
                         email = candidate.get("email") or "N/A"
                         
-                        wa_link = f"https://wa.me/{''.join(filter(str.isdigit, phone))}" if phone != "N/A" else phone
+                        # --- LOGIKA WHATSAPP LINK ---
+                        if phone != "N/A":
+                            # Hapus semua karakter non-angka (spasi, strip, tanda kurung, '+')
+                            clean_phone = ''.join(filter(str.isdigit, phone))
+                            
+                            # Standarisasi format: awalan '0' menjadi '62'
+                            if clean_phone.startswith('0'):
+                                clean_phone = '62' + clean_phone[1:]
+                            
+                            wa_link = f"https://wa.me/{clean_phone}" if clean_phone else "N/A"
+                        else:
+                            wa_link = "N/A"
+                        # ----------------------------
                             
                         results.append({
                             "Nama Pelamar": name,
