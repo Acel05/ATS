@@ -22,15 +22,28 @@ with st.sidebar:
     job_description = st.text_area("Job Requirement & Description:", height=150, placeholder="Masukkan kualifikasi dan deskripsi pekerjaan")
     
     st.subheader("🎯 Personalisasi Penilaian")
-    target_domain = st.selectbox("Target Domain (Opsional):", ["Auto-Detect", "Software / IT", "Data / AI", "Marketing", "Finance", "General"])
+    DOMAIN_OPTIONS = [
+        "Auto-Detect", "Operations / Supply Chain", "Data Science / AI", "Software / IT", 
+        "Sales", "Marketing", "Finance / Banking", "Human Resources", "Project Management",
+        "General Administration"
+    ]
+    target_domain = st.selectbox("Target Domain (Opsional):", DOMAIN_OPTIONS)
     
-    COMMON_KEYWORDS = ["B2B", "B2C", "Leadership", "Agile", "Scrum", "Problem Solving", "Analytics"]
-    COMMON_SKILLS = ["Python", "SQL", "Excel", "Java", "Tableau", "Machine Learning", "Digital Marketing"]
+    COMMON_KEYWORDS = [
+        "Logistics", "Supply Chain", "Last-Mile Delivery", "SLA", 
+        "Warehouse", "Operations", "B2B", "B2C", "Fleet Management", 
+        "Route Optimization", "Vendor Management", "Problem Solving"
+    ]
+    
+    COMMON_SKILLS = [
+        "SQL", "Python", "Excel", "AWS QuickSight", "Data Analytics", 
+        "WMS (Warehouse Management System)", "SAP", "Supply Chain Management", 
+        "Tableau", "Machine Learning"
+    ]
     
     custom_keywords = st.multiselect(
         "Keyword Khusus:",
         options=COMMON_KEYWORDS,
-        default=["Agile", "B2B"],
         max_selections=20,
         accept_new_options=True,
         help="Pilih dari daftar atau ketik keyword baru lalu tekan Enter"
@@ -39,7 +52,6 @@ with st.sidebar:
     custom_skills = st.multiselect(
         "Skill Wajib:",
         options=COMMON_SKILLS,
-        default=["Python", "SQL"],
         max_selections=20,
         accept_new_options=True,
         help="Pilih dari daftar atau ketik skill baru lalu tekan Enter"
